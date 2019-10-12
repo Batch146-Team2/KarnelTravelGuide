@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KarnelTravelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="20" />
+          <Property Name="Email" Type="nchar" MaxLength="200" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="LevelId" Type="int" />
+          <Property Name="LastLogin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LevelPermissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelId" Type="int" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AllowPermission" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Levels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employees_Levels">
+          <End Role="Levels" Type="Self.Levels" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Levels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LevelLevelPermission">
+          <End Role="Levels" Type="Self.Levels" Multiplicity="1" />
+          <End Role="LevelPermissions" Type="Self.LevelPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Levels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LevelPermissions">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KarnelTravelModelStoreContainer">
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LevelPermissions" EntityType="Self.LevelPermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Levels" EntityType="Self.Levels" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employees_Levels" Association="Self.FK_Employees_Levels">
+            <End Role="Levels" EntitySet="Levels" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LevelLevelPermission" Association="Self.FK_LevelLevelPermission">
+            <End Role="Levels" EntitySet="Levels" />
+            <End Role="LevelPermissions" EntitySet="LevelPermissions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KarnelTravelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LevelId" Type="Int32" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Level" Relationship="Self.FK_Employees_Levels" FromRole="Employees" ToRole="Levels" />
+        </EntityType>
+        <EntityType Name="LevelPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelId" Type="Int32" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AllowPermission" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Level" Relationship="Self.FK_LevelLevelPermission" FromRole="LevelPermissions" ToRole="Levels" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Levels" FromRole="Levels" ToRole="Employees" />
+          <NavigationProperty Name="LevelPermissions" Relationship="Self.FK_LevelLevelPermission" FromRole="Levels" ToRole="LevelPermissions" />
+        </EntityType>
+        <Association Name="FK_Employees_Levels">
+          <End Role="Levels" Type="Self.Level" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Levels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LevelLevelPermission">
+          <End Role="Levels" Type="Self.Level" Multiplicity="1" />
+          <End Role="LevelPermissions" Type="Self.LevelPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Levels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LevelPermissions">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KarnelTravelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="LevelPermissions" EntityType="Self.LevelPermission" />
+          <EntitySet Name="Levels" EntityType="Self.Level" />
+          <AssociationSet Name="FK_Employees_Levels" Association="Self.FK_Employees_Levels">
+            <End Role="Levels" EntitySet="Levels" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LevelLevelPermission" Association="Self.FK_LevelLevelPermission">
+            <End Role="Levels" EntitySet="Levels" />
+            <End Role="LevelPermissions" EntitySet="LevelPermissions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KarnelTravelModelStoreContainer" CdmEntityContainer="KarnelTravelEntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="KarnelTravelModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LevelPermissions">
+            <EntityTypeMapping TypeName="KarnelTravelModel.LevelPermission">
+              <MappingFragment StoreEntitySet="LevelPermissions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="AllowPermission" ColumnName="AllowPermission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Levels">
+            <EntityTypeMapping TypeName="KarnelTravelModel.Level">
+              <MappingFragment StoreEntitySet="Levels">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

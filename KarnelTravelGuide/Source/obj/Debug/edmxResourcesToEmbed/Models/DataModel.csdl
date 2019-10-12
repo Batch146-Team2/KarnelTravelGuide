@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KarnelTravelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LevelId" Type="Int32" />
+    <Property Name="LastLogin" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Level" Relationship="Self.FK_Employees_Levels" FromRole="Employees" ToRole="Levels" />
+  </EntityType>
+  <EntityType Name="LevelPermission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LevelId" Type="Int32" Nullable="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AllowPermission" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Level" Relationship="Self.FK_LevelLevelPermission" FromRole="LevelPermissions" ToRole="Levels" />
+  </EntityType>
+  <EntityType Name="Level">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Levels" FromRole="Levels" ToRole="Employees" />
+    <NavigationProperty Name="LevelPermissions" Relationship="Self.FK_LevelLevelPermission" FromRole="Levels" ToRole="LevelPermissions" />
+  </EntityType>
+  <Association Name="FK_Employees_Levels">
+    <End Role="Levels" Type="Self.Level" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Levels">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="LevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LevelLevelPermission">
+    <End Role="Levels" Type="Self.Level" Multiplicity="1" />
+    <End Role="LevelPermissions" Type="Self.LevelPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Levels">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LevelPermissions">
+        <PropertyRef Name="LevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KarnelTravelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="LevelPermissions" EntityType="Self.LevelPermission" />
+    <EntitySet Name="Levels" EntityType="Self.Level" />
+    <AssociationSet Name="FK_Employees_Levels" Association="Self.FK_Employees_Levels">
+      <End Role="Levels" EntitySet="Levels" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LevelLevelPermission" Association="Self.FK_LevelLevelPermission">
+      <End Role="Levels" EntitySet="Levels" />
+      <End Role="LevelPermissions" EntitySet="LevelPermissions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
