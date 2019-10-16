@@ -18,7 +18,7 @@ namespace Source.Models
         public int LevelId { get; set; }
         public string TableName { get; set; }
         public string DisplayName { get; set; }
-        public bool AllowPermission { get; set; }
+        public Nullable<int> AllowPermission { get; set; }
     
         public virtual Level Level { get; set; }
     }

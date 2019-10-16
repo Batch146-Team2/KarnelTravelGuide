@@ -23,6 +23,8 @@ namespace Source.Models
         public string Address { get; set; }
         public Nullable<int> LevelId { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
+        public string Avatar { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
         public virtual Level Level { get; set; }
     }

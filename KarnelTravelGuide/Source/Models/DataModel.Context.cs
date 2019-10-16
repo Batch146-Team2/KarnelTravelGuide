@@ -28,5 +28,7 @@ namespace Source.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<LevelPermission> LevelPermissions { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     }
 }

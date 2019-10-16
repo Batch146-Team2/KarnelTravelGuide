@@ -1,3 +1,4 @@
+E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\Source.dll.config
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\Source.dll
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\Source.pdb
@@ -8,7 +9,6 @@ E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\csi.exe
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\csi.exe.config
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\csi.rsp
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\Microsoft.CodeAnalysis.dll
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
@@ -73,7 +73,6 @@ E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\System.Web.WebPage
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\Newtonsoft.Json.xml
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\Antlr3.Runtime.pdb
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\obj\Debug\Source.csprojAssemblyReference.cache
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\obj\Debug\Source.csproj.CoreCompileInputs.cache
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\obj\Debug\Source.csproj.CopyComplete
 E:\ProjectSem3\KarnelTravelGuide\KarnelTravelGuide\Source\obj\Debug\Source.dll

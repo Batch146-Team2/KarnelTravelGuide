@@ -131,9 +131,15 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Admin\Models\CheckAccessAttribute.cs" />
+    <Compile Include="Areas\Admin\Models\TypeControl.cs" />
+    <Compile Include="Areas\Admin\Models\Untils.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -157,6 +163,10 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LevelPermission.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mysecurity.cs" />
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -230,10 +240,143 @@
     <Content Include="Content\admin\main\js\perfect-scrollbar.jquery.min.js" />
     <Content Include="Content\admin\main\js\sidebarmenu.js" />
     <Content Include="Content\admin\main\js\waves.js" />
+    <Content Include="Content\avatar\4\cuibap.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\home\css\.css" />
+    <Content Include="Content\home\css\animate.css" />
+    <Content Include="Content\home\css\bootstrap-select.css" />
+    <Content Include="Content\home\css\bootstrap-theme.css" />
+    <Content Include="Content\home\css\bootstrap.css" />
+    <Content Include="Content\home\css\color\color1.css" />
+    <Content Include="Content\home\css\default\404.css" />
+    <Content Include="Content\home\css\default\about.css" />
+    <Content Include="Content\home\css\default\blog.css" />
+    <Content Include="Content\home\css\default\call-to-action.css" />
+    <Content Include="Content\home\css\default\comming-soon.css" />
+    <Content Include="Content\home\css\default\contact_page.css" />
+    <Content Include="Content\home\css\default\content-section.css" />
+    <Content Include="Content\home\css\default\customer-says.css" />
+    <Content Include="Content\home\css\default\event.css" />
+    <Content Include="Content\home\css\default\footer.css" />
+    <Content Include="Content\home\css\default\header.css" />
+    <Content Include="Content\home\css\default\login-signup.css" />
+    <Content Include="Content\home\css\default\margin-padding.css" />
+    <Content Include="Content\home\css\default\portfolio.css" />
+    <Content Include="Content\home\css\default\rtl.css" />
+    <Content Include="Content\home\css\default\services.css" />
+    <Content Include="Content\home\css\default\typography.css" />
+    <Content Include="Content\home\css\default\widget.css" />
+    <Content Include="Content\home\css\font-awesome.css" />
+    <Content Include="Content\home\css\fonts.css" />
+    <Content Include="Content\home\css\jquery.datetimepicker.css" />
+    <Content Include="Content\home\css\main.css" />
+    <Content Include="Content\home\css\responsive.css" />
+    <Content Include="Content\home\css\travelite-style.css" />
+    <Content Include="Content\home\css\travelite_dark.css" />
+    <Content Include="Content\home\css\woocommerce.css" />
+    <Content Include="Content\home\images\about\shutterstock.jpg" />
+    <Content Include="Content\home\images\about\team-four.jpg" />
+    <Content Include="Content\home\images\about\team-one.jpg" />
+    <Content Include="Content\home\images\about\team-three.jpg" />
+    <Content Include="Content\home\images\about\team-two.jpg" />
+    <Content Include="Content\home\images\around_the_world_01.jpg" />
+    <Content Include="Content\home\images\bg\page_loading.jpg" />
+    <Content Include="Content\home\images\bg\page_title_bg.jpg" />
+    <Content Include="Content\home\images\blog\recent_blog_footer1.jpg" />
+    <Content Include="Content\home\images\blog\recent_blog_footer2.jpg" />
+    <Content Include="Content\home\images\flights\flight_booking_bg.jpg" />
+    <Content Include="Content\home\images\Home-tour\booking_tour_bg.jpg" />
+    <Content Include="Content\home\images\Home\feature1.jpg" />
+    <Content Include="Content\home\images\Home\feature2.jpg" />
+    <Content Include="Content\home\images\Home\feature3.jpg" />
+    <Content Include="Content\home\images\Home\home-2-slide.jpg" />
+    <Content Include="Content\home\images\Home\home-3-slide.jpg" />
+    <Content Include="Content\home\images\Home\home-destination1.jpg" />
+    <Content Include="Content\home\images\Home\home-destination2.jpg" />
+    <Content Include="Content\home\images\Home\home-destination3.jpg" />
+    <Content Include="Content\home\images\Home\home-destination4.jpg" />
+    <Content Include="Content\home\images\Home\Home4\customer_say_bg.jpg" />
+    <Content Include="Content\home\images\Home\Home4\lefticon.png" />
+    <Content Include="Content\home\images\Home\Home4\quote_left.png" />
+    <Content Include="Content\home\images\Home\Home4\quote_right.png" />
+    <Content Include="Content\home\images\Home\Home4\Righticon.png" />
+    <Content Include="Content\home\images\Home\Home4\shutterstock_bg.jpg" />
+    <Content Include="Content\home\images\Home\Home5\video_bg_img.jpg" />
+    <Content Include="Content\home\images\Home\Home6\our_fearure_bg.jpg" />
+    <Content Include="Content\home\images\Home\Hover-Line-Top.png" />
+    <Content Include="Content\home\images\Home\latest-news1.jpg" />
+    <Content Include="Content\home\images\Home\latest-news2.jpg" />
+    <Content Include="Content\home\images\Home\latest-news3.jpg" />
+    <Content Include="Content\home\images\Home\latest-news4.jpg" />
+    <Content Include="Content\home\images\Home\line-circle2.png" />
+    <Content Include="Content\home\images\Home\packge_bg.jpg" />
+    <Content Include="Content\home\images\Home\slider-beach.jpg" />
+    <Content Include="Content\home\images\Home\subscribe_bg.jpg" />
+    <Content Include="Content\home\images\Home\video-bg-img.jpg" />
+    <Content Include="Content\home\images\Hotels\bg_overlay.png" />
+    <Content Include="Content\home\images\Hotels\next_iocn.png" />
+    <Content Include="Content\home\images\Hotels\prev_icon.png" />
+    <Content Include="Content\home\images\Hotels\ui-icon-spinner-bottom.png" />
+    <Content Include="Content\home\images\Hotels\ui-icon-spinner-top.png" />
+    <Content Include="Content\home\images\icon\loading_plane.svg" />
+    <Content Include="Content\home\images\offer\hex_bg.png" />
+    <Content Include="Content\home\images\offer\hex_bg_hover.png" />
+    <Content Include="Content\home\images\Payment-Images.png" />
+    <Content Include="Content\home\images\tour-booking\bottom_bg.jpg" />
+    <Content Include="Content\home\js\bootstrap-select.js" />
+    <Content Include="Content\home\js\bootstrap.js" />
+    <Content Include="Content\home\js\custom.js" />
+    <Content Include="Content\home\js\jquery-1.11.3.js" />
+    <Content Include="Content\home\js\plugin\bxslider\images\arrow_left.png" />
+    <Content Include="Content\home\js\plugin\bxslider\images\arrow_right.png" />
+    <Content Include="Content\home\js\plugin\bxslider\images\controls.png" />
+    <Content Include="Content\home\js\plugin\bxslider\jquery-bxslider.js" />
+    <Content Include="Content\home\js\plugin\bxslider\jquery.bxslider.css" />
+    <Content Include="Content\home\js\plugin\counter\jquery.countdown.js" />
+    <Content Include="Content\home\js\plugin\counter\jquery.countTo.js" />
+    <Content Include="Content\home\js\plugin\datetimepicker\jquery.datetimepicker.js" />
+    <Content Include="Content\home\js\plugin\isotope\jquery.isotope.js" />
+    <Content Include="Content\home\js\plugin\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\home\js\plugin\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\home\js\plugin\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\home\js\plugin\jquery-ui\jquery-ui.css" />
+    <Content Include="Content\home\js\plugin\jquery-ui\jquery-ui.js" />
+    <Content Include="Content\home\js\plugin\owl\owl.carousel.css" />
+    <Content Include="Content\home\js\plugin\owl\owl.carousel.js" />
+    <Content Include="Content\home\js\plugin\owl\owl.theme.css" />
+    <Content Include="Content\home\js\plugin\parallax\jquery.parallax-1.1.3.js" />
+    <Content Include="Content\home\js\plugin\pie-circle\circles.js" />
+    <Content Include="Content\home\js\plugin\revolution\css\layers.css" />
+    <Content Include="Content\home\js\plugin\revolution\css\settings.css" />
+    <Content Include="Content\home\js\plugin\revolution\icons\arrow-left.png" />
+    <Content Include="Content\home\js\plugin\revolution\icons\arrow-right.png" />
+    <Content Include="Content\home\js\plugin\revolution\icons\loader.gif" />
+    <Content Include="Content\home\js\plugin\revolution\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\home\js\plugin\revolution\js\jquery.themepunch.tools.min.js" />
+    <Content Include="Content\home\js\plugin\revolution\js\revolution.extension.actions.min.js" />
+    <Content Include="Content\home\js\plugin\revolution\js\revolution.extension.layeranimation.min.js" />
+    <Content Include="Content\home\js\plugin\revolution\js\revolution.extension.navigation.min.js" />
+    <Content Include="Content\home\js\plugin\revolution\js\revolution.extension.parallax.min.js" />
+    <Content Include="Content\home\js\plugin\revolution\js\revolution.extension.slideanims.min.js" />
+    <Content Include="Content\home\js\plugin\slick\ajax-loader.gif" />
+    <Content Include="Content\home\js\plugin\slick\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Content\home\js\plugin\slick\slick-theme.css" />
+    <Content Include="Content\home\js\plugin\slick\slick.css" />
+    <Content Include="Content\home\js\plugin\slick\slick.min.js" />
+    <Content Include="Content\home\js\plugin\video-popup\jquery.magnific-popup.js" />
+    <Content Include="Content\home\js\plugin\video-popup\magnific-popup.css" />
+    <Content Include="Content\home\js\plugin\video_player\css\bigplay.png" />
+    <Content Include="Content\home\js\plugin\video_player\css\bigplay.svg" />
+    <Content Include="Content\home\js\plugin\video_player\css\controls.png" />
+    <Content Include="Content\home\js\plugin\video_player\css\controls.svg" />
+    <Content Include="Content\home\js\plugin\video_player\css\loading.gif" />
+    <Content Include="Content\home\js\plugin\video_player\css\mediaelementplayer.min.css" />
+    <Content Include="Content\home\js\plugin\video_player\mediaelement-and-player.min.js" />
+    <Content Include="Content\home\svg\error_bg_img.svg" />
+    <Content Include="Content\home\svg\Logo.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -314,6 +457,19 @@
     <Content Include="Content\admin\main\css\icons\material-design-iconic-font\fonts\Simple-Line-Icons.ttf" />
     <Content Include="Content\admin\main\css\icons\material-design-iconic-font\fonts\materialdesignicons-webfont.woff2" />
     <Content Include="Content\admin\main\css\icons\simple-line-icons\fonts\Simple-Line-Icons.woff2" />
+    <Content Include="Areas\Admin\Views\Account\Profile.cshtml" />
+    <Content Include="Content\home\fonts\caviar\CaviarDreams.ttf" />
+    <Content Include="Content\home\fonts\caviar\CaviarDreams_Bold.ttf" />
+    <Content Include="Content\home\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\home\fonts\glyphicons-halflings-regular.svg#glyphicons_halflingsregular" />
+    <Content Include="Content\home\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\home\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\home\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\home\fonts\reve.ttf" />
+    <Content Include="Content\home\js\plugin\slick\fonts\slick.eot" />
+    <Content Include="Content\home\js\plugin\slick\fonts\slick.svg#slick" />
+    <Content Include="Content\home\js\plugin\slick\fonts\slick.ttf" />
+    <Content Include="Content\home\js\plugin\slick\fonts\slick.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -342,7 +498,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Content\avatar\4\4\" />
+    <Folder Include="Content\home\css\github.com\necolas\" />
+    <Folder Include="Content\home\js\plugin\revolution\assets\" />
+    <Folder Include="Content\home\js\plugin\revolution\fonts\revicons\" />
+    <Folder Include="Content\home\js\plugin\revolution\images\gradient\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

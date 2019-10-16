@@ -14,6 +14,8 @@
     <Property Name="LevelId" Type="Int32" />
     <Property Name="LastLogin" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Level" Relationship="Self.FK_Employees_Levels" FromRole="Employees" ToRole="Levels" />
+    <Property Name="Avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
   </EntityType>
   <EntityType Name="LevelPermission">
     <Key>
@@ -21,9 +23,9 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="LevelId" Type="Int32" Nullable="false" />
-    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="AllowPermission" Type="Boolean" Nullable="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AllowPermission" Type="Int32" />
     <NavigationProperty Name="Level" Relationship="Self.FK_LevelLevelPermission" FromRole="LevelPermissions" ToRole="Levels" />
   </EntityType>
   <EntityType Name="Level">
@@ -71,5 +73,29 @@
       <End Role="Levels" EntitySet="Levels" />
       <End Role="LevelPermissions" EntitySet="LevelPermissions" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="KarnelTravelModel.sysdiagram" />
+    <EntitySet Name="Customers" EntityType="KarnelTravelModel.Customer" />
   </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="VIP" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

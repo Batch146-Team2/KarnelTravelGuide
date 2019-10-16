@@ -39,11 +39,11 @@
     <!-- ============================================================== -->
     <section id="wrapper">
 
-        
+
         <div class="login-register" style="background-image:url(/Content/admin/assets/images/background/login-register.jpg);">
             <div class="login-box card">
                 <div class="card-body">
-                    <form class="form-horizontal form-material" id="loginform" action="index.html">
+                    <form class="form-horizontal form-material" id="loginform" method="post">
                         <h3 class="box-title m-b-20">Sign In</h3>
                         <div class="form-group ">
                             <div class="col-xs-12">
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" name="" type="password" required="" placeholder="Password">
+                                <input class="form-control" name="password" type="password" required="" placeholder="Password">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -65,6 +65,7 @@
                         </div>
                         <div class="form-group text-center">
                             <div class="col-xs-12 p-b-20">
+                                <input type="submit" value="Login" class="btn btn-default submit" />
                                 <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Log In</button>
                             </div>
                         </div>
@@ -76,13 +77,13 @@
                                 </div>
                             </div>
                         </div>*@
-                        <div class="form-group m-b-0">
+                        @*<div class="form-group m-b-0">
                             <div class="col-sm-12 text-center">
                                 Don't have an account? <a href="pages-register.html" class="text-info m-l-5"><b>Sign Up</b></a>
                             </div>
-                        </div>
+                        </div>*@
                     </form>
-                    <form class="form-horizontal" id="recoverform" action="index.html">
+                    @*<form class="form-horizontal" id="recoverform" action="index.html">
                         <div class="form-group ">
                             <div class="col-xs-12">
                                 <h3>Recover Password</h3>
@@ -99,10 +100,11 @@
                                 <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reset</button>
                             </div>
                         </div>
-                    </form>
+                    </form>*@
                 </div>
             </div>
         </div>
+        @ViewBag.Message
     </section>
 
     <!-- ============================================================== -->

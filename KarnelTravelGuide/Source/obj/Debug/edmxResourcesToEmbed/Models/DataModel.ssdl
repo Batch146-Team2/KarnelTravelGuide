@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="KarnelTravelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="VIP" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Employees">
     <Key>
       <PropertyRef Name="Id" />
@@ -13,6 +25,8 @@
     <Property Name="Address" Type="nvarchar" MaxLength="200" />
     <Property Name="LevelId" Type="int" />
     <Property Name="LastLogin" Type="datetime" />
+    <Property Name="Avatar" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" />
   </EntityType>
   <EntityType Name="LevelPermissions">
     <Key>
@@ -20,9 +34,9 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LevelId" Type="int" Nullable="false" />
-    <Property Name="TableName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="AllowPermission" Type="bit" Nullable="false" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+    <Property Name="AllowPermission" Type="int" />
   </EntityType>
   <EntityType Name="Levels">
     <Key>
@@ -30,6 +44,16 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LevelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Employees_Levels">
     <End Role="Levels" Type="Self.Levels" Multiplicity="0..1" />
@@ -56,9 +80,11 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="KarnelTravelModelStoreContainer">
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LevelPermissions" EntityType="Self.LevelPermissions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Levels" EntityType="Self.Levels" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Employees_Levels" Association="Self.FK_Employees_Levels">
       <End Role="Levels" EntitySet="Levels" />
       <End Role="Employees" EntitySet="Employees" />
