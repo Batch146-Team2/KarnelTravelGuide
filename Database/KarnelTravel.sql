@@ -104,9 +104,9 @@ GO
 CREATE TABLE [dbo].[LevelPermissions](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[LevelId] [int] NOT NULL,
-	[TableName] [nvarchar](50) NOT NULL,
-	[DisplayName] [nvarchar](100) NOT NULL,
-	[AllowPermission] [bit] NOT NULL,
+	[TableName] [nvarchar](50) NULL,
+	[DisplayName] [nvarchar](100)  NULL,
+	[AllowPermission] [int] NULL,
  CONSTRAINT [PK_LevelPermissions] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -164,4 +164,26 @@ ALTER TABLE [dbo].[LevelPermissions]  WITH CHECK ADD  CONSTRAINT [FK_LevelLevelP
 REFERENCES [dbo].[Levels] ([Id])
 GO
 ALTER TABLE [dbo].[LevelPermissions] CHECK CONSTRAINT [FK_LevelLevelPermission]
+GO
+
+
+/****** Object:  Table [dbo].[Customers]    Script Date: 16/10/2019 08:10:55 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Customers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CustomerName] [nvarchar](50) NOT NULL,
+	[Email] [nvarchar](150) NOT NULL,
+	[Password] [nvarchar](100) NULL,
+	[Phone] [nvarchar](50) NOT NULL,
+	[Address] [nvarchar](200) NOT NULL,
+	[VIP] [int] NOT NULL,
+ CONSTRAINT [PK_Customers_1] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
 GO
